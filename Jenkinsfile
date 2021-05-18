@@ -1,34 +1,30 @@
-#!/usr/bin/groovy
 
-node {
-  // If you are having issues with your project not getting updated,
-  // try uncommenting the following lines.
-  stage 'Checkout'
-  checkout scm
-    git  url: 'https://github.com/chaweewatp/testDjangoJenkins'
-
-
-  stage 'Update Python Modules'
-  env.WORKSPACE = pwd()
-
-  // Create a virtualenv in this folder, and install or upgrade packages
-  // specified in requirements.txt; https://pip.readthedocs.io/en/1.1/requirements.html
-  sh 'python3 -m venv env && source env/bin/activate && pip install --upgrade -r requirements.txt'
-
-  stage 'Test'
-  // Invoke Django's tests
-  sh 'source env/bin/activate && python manage.py test'
+pipeline {
+    agent any
+    stages {
+         stage('Setup Python Virtual Environment'){
+            steps {
+                sh '''
+                    chmod +x envsetup.sh
+                    ./envsetup.sh
+                    '''
+            }
+        }
+        stage('Setup gunicorn service'){
+            steps {
+                sh '''
+                    chmod +x gunicorn.sh
+                    ./gunicorn.sh
+                    '''
+            }
+        }
+//         stage('Setup Nginx'){
+//             steps {
+//                 sh '''
+//                     chmod +x nginx.sh
+//                     ./nginx.sh
+//                     '''
+//             }
+//         }
+    }
 }
-
-
-
-
-// export WORKSPACE=`pwd`
-// # Create/Activate virtualenv
-// python3 -m venv env
-//
-// source env/bin/activate
-// # Install Requirements
-// pip install -r requirements.txt
-// # Run tests
-// python manage.py test
