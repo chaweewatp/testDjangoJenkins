@@ -18,13 +18,13 @@ pipeline {
                     '''
             }
         }
-//         stage('Setup Nginx'){
-//             steps {
-//                 sh '''
-//                     chmod +x nginx.sh
-//                     ./nginx.sh
-//                     '''
-//             }
-//         }
+        stage('Setup Nginx'){
+            steps {
+                sh '''
+                    chmod +x nginx.sh
+                    ./nginx.sh
+                    '''
+            }
+        }
     }
 }
