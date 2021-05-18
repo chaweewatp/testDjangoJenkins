@@ -10,24 +10,24 @@ pipeline {
                     '''
             }
         }
-        stage('test'){
-            steps {
-                sh '''
-                    source env/bin/activate
-                    python3 manage.py test
-                '''
-            }
-        }
-
-
-//         stage('Setup gunicorn service'){
+//         stage('test'){
 //             steps {
 //                 sh '''
-//                     chmod +x gunicorn.sh
-//                     ./gunicorn.sh
-//                     '''
+//                     source env/bin/activate
+//                     python3 manage.py test
+//                 '''
 //             }
 //         }
+
+
+        stage('Setup gunicorn service'){
+            steps {
+                sh '''
+                    chmod +x gunicorn.sh
+                    ./gunicorn.sh
+                    '''
+            }
+        }
 //         stage('Setup Nginx'){
 //             steps {
 //                 sh '''
