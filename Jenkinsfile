@@ -11,12 +11,12 @@ pipeline {
             }
         }
         stage('test'){
-        steps{
-        sh '''
-            source env/bin/activate
-            python3 manage.py test
-        '''
-        }
+            steps {
+                sh '''
+                    source env/bin/activate
+                    python3 manage.py test
+                '''
+            }
         }
 
 
