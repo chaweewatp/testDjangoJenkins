@@ -10,18 +10,18 @@ python3 manage.py collectstatic --noinput
 
 python3 manage.py test
 
-cp -rf gunicorn.service /etc/systemd/system/
+sudo cp -rf gunicorn.service /etc/systemd/system/
 
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
-systemctl start gunicorn
+sudo systemctl start gunicorn
 
 echo "Gunicorn has started."
 
-systemctl enable gunicorn
+sudo systemctl enable gunicorn
 
 echo "Gunicorn has been enabled."
 
-systemctl status gunicorn
+sudo systemctl status gunicorn
 
-systemctl restart gunicorn
+sudo systemctl restart gunicorn
